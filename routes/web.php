@@ -20,4 +20,5 @@
 
 
 Route::get('/', 'PostsController@index')->name('posts.index');
+Route::get('/blog/{slug}', 'PostsController@singlePost')->name('posts.singlepost');
 

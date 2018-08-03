@@ -24,9 +24,22 @@ class PostsController extends Controller
                         ->Published()
                         ->take(4)
                         ->get();
-        return view('blog.index',compact('posts'));
+        
+        // $next_id = Posts::where('id','>',$post->id)->min('id');
+        // $prev_id = Posts::where('id','<',$post->id)->max('id');
+        // $next_post = Posts::where('id',$next_id)->first();
+        // $prev_post = Posts::where('id',$prev_id)->first();      
+
+        return view('blog.index',compact('posts','prev_id','next_post'));
         // view('blog.index',compact('posts'));
         //  dd(\DB::getQueryLog());
+    }
+
+    public function singlePost($slug)
+    {
+        $post = Post::where('slug',$slug)->first();
+
+        return view('blog.show',compact('post'));
     }
 
     /**
