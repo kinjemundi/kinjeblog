@@ -9,6 +9,15 @@ class Post extends Model
     //
 
     /**
+     * author
+     * @return mixed 
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * getFeaturedImageUrlAttribute
      * @param mixed $value 
      * @return mixed 
@@ -27,4 +36,24 @@ class Post extends Model
         
         return $featured_image_url;
     }
+
+   /**
+    * getDateAttribute
+    * @param mixed $value 
+    * @return mixed 
+    */
+   public function getDateAttribute($value)
+   {
+    //    return $this->created_at->diffForHumans();
+       return $this->created_at->toFormattedDateString();
+   }
+
+   /**
+    * scopeLatestFirst
+    * @return mixed 
+    */
+   public function scopeLatestFirst()
+   {
+       return $this->orderBy('created_at','desc');
+   }
 }

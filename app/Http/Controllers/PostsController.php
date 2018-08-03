@@ -14,8 +14,14 @@ class PostsController extends Controller
     public function index()
     {
         //
+        // \DB::enableQueryLog();
+        // $posts = Post::with('author')->get();
+        // view('blog.index',compact('posts'));
+        // dd(\DB::getQueryLog());
+        
         $posts = Post::latest()->take(3)->get();
         return view('blog.index',compact('posts'));
+        
     }
 
     /**
