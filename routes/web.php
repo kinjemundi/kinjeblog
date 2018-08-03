@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('blog.index');
-});
-Route::get('/show', function () {
-    return view('blog.show');
-});
+// Route::get('/', function () {
+//     return view('blog.index');
+// });
+// Route::get('/show', function () {
+//     return view('blog.show');
+// });
+
+
+Route::get('/', 'PostsController@index')->name('posts.index');
+
